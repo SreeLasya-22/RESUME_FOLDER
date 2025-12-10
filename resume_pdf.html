@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ resume.name }}</h1>
+
+    <div class="section"><strong>Email:</strong> {{ resume.email }}</div>
+    <div class="section"><strong>Phone:</strong> {{ resume.phone }}</div>
+    <div class="section"><strong>Education:</strong>{{ resume.education}}</div>
+    <div class="section"><strong>Languages:</strong> {{ resume.languages }}</div>   
+    <div class="section"><strong>Skills:</strong> {{ resume.skills }}</div>
+    <div class="section"><strong>Experience:</strong> {{ resume.experience }}</div>
+    <div class="section"><strong>Acknowledgement:</strong> {{ resume.acknowledgment }}</div>    
+    <div class="section"><strong>Hobbies:</strong> {{ resume.hobbies }}</div>
+</body>
+</html>

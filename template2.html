@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Preview - Template 2</title>
+
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(to right, #f3f3f3, #e8e8e8);
+            margin: 0;
+            padding: 40px;
+            color:darkgreen;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+
+        .resume-container {
+            width: 80%;
+            margin: auto;
+            background-color:pink;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #b82f2b;
+            border-bottom: 3px solid #d9534f;
+            padding-bottom: 5px;
+            font-size: 32px;
+            letter-spacing: 2px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #d9534f;
+            border-left: 4px solid #d9534f;
+            padding-left: 6px;
+        }
+
+        p {
+            color:blue;
+            font-size: 20px;
+            margin: 6px 0;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Buttons Section */
+        .btn-section {
+            margin-top: 40px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color:deepskyblue;
+            color:darkmagenta;
+            border: none;
+            margin: 10px 8px 0 0;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #b52b28;
+        }
+
+        .template-buttons, .pdf-buttons {
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-top: 35px;
+            font-size: 22px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="resume-container">
+
+    <h1>{{ resume.name }}</h1>
+
+    <p><strong>Email:</strong> {{ resume.email }}</p>
+    <p><strong>Phone:</strong> {{ resume.phone }}</p>
+    <p><strong>Education:</strong> {{ resume.education }}</p>
+    <p><strong>Languages:</strong> {{ resume.languages }}</p>
+    <p><strong>Hobbies:</strong> {{ resume.hobbies }}</p>
+    <p><strong>Acknowledgement:</strong> {{ resume.acknowledgment }}</p>
+
+    <h3>Skills</h3>
+    <ul>
+        {% for skill in skills_list %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Experience</h3>
+    <ul>
+        {% for exp in experience_list %}
+            <li>{{ exp }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="btn-section">
+
+        <h2>Choose Template</h2>
+        <div class="template-buttons">
+            <a href="{% url 'resume_preview' resume.id %}?template=template1">
+                <button>Template 1</button>
+            </a>
+
+            <a href="{% url 'resume_preview' resume.id %}?template=template2">
+                <button>Template 2</button>
+            </a>
+
+            <a href="{% url 'resume_preview' resume.id %}?template=template3">
+                <button>Template 3</button>
+            </a>
+        </div>
+
+        <h2>Download PDF</h2>
+        <div class="pdf-buttons">
+            <a href="{% url 'download_resume_pdf' resume.id %}?template=template1">
+                <button>Download Template 1 PDF</button>
+            </a>
+
+            <a href="{% url 'download_resume_pdf' resume.id %}?template=template2">
+                <button>Download Template 2 PDF</button>
+            </a>
+
+            <a href="{% url 'download_resume_pdf' resume.id %}?template=template3">
+                <button>Download Template 3 PDF</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

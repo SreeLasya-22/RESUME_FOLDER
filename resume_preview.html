@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Preview</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .skills span { 
+            display:inline-block; 
+            margin: 2px 5px; 
+            padding:3px 8px; 
+            background:#2e5aac; 
+            color:white; 
+            border-radius:12px; 
+            font-size:24px;
+        }
+
+        .template2-body { 
+            font-family: 'Courier New', monospace; 
+            background: #f5f5f5; 
+            color: #333; 
+        }
+        .template2 h1 { color: #d9534f; }
+
+        ul { list-style-type: square; }
+    </style>
+</head>
+
+<body class="{% if template_name == 'template2' %}template2-body{% endif %}">
+    
+    <h1 class="{% if template_name == 'template2' %}template2{% endif %}">
+        {{ resume.name }}
+    </h1>
+
+    <p>Email: {{ resume.email }}</p>
+    <p>Phone: {{ resume.phone }}</p>
+    <p>Education: {{ resume.education }}</p>
+    <p>Languages: {{ resume.languages }}</p>
+    <p>Hobbies: {{ resume.hobbies }}</p>
+    <p>Acknowledgement: {{ resume.acknowledgment }}</p>
+
+    <h3>Skills:</h3>
+
+    {% if template_name == 'template2' %}
+        <ul>
+        {% for skill in skills_list %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div class="skills">
+        {% for skill in skills_list %}
+            <span>{{ skill }}</span>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    <h3>Experience:</h3>
+    <ul>
+        {% for exp in experience_list %}
+            <li>{{ exp }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+{% load custom_filter %}
+{% load custom_filter1 %}
+
+<!DOCTYPE html>
+<title>Resume Preview - {{ resume.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+        .resume-container {
+            width: 800px;
+            background-color: #fff;
+            display: flex;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .left-column {
+            background-color: #2e5aac;
+            color: white;
+            padding: 30px;
+            width: 250px;
+        }
+        .left-column h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .left-column p, .left-column a {
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .left-column .skills span {
+            display: inline-block;
+            background-color: #476fc9;
+            padding: 5px 10px;
+            margin: 5px 5px 0 0;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        .right-column {
+            padding: 30px;
+            flex-grow: 1;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            color: #2e5aac;
+            border-bottom: 2px solid #2e5aac;
+            padding-bottom: 5px;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 15px;
+        }
+        .experience-item h4, .education-item h4 {
+            margin: 0;
+        }
+        .experience-item p, .education-item p {
+            margin: 5px 0 0 0;
+        }
+        .download-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2e5aac;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .download-button:hover {
+            background-color: #1f3f7c;
+        }
+        /* Hide download button when generating PDF / printing */
+    @media print {
+        .download-button {
+            display: none !important;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="left-column">
+            <h1>{{ resume.name }}</h1>
+            <p>{{ resume.education }}</p>
+            <p>{{ resume.email }}</p>
+            <p>{{ resume.phone }}</p>
+            <p>{{ resume.hobbies }}</p>
+            
+            <h2>Skills</h2>
+             <div class="skills">
+                 {% for skill in resume.skills|split:" " %}
+                <span>{{ skill }}</span>
+                 {% endfor %}
+             </div>
+            <h2>Languages</h2>
+            <p>{{ resume.languages }}</p>
+        </div>
+        <div class="right-column">
+            <div class="section">
+                <h3>Professional Summary</h3>
+                <p>{{ resume.acknowledgment }}</p>
+            </div>
+
+            <div class="section">
+                <h3>Experience</h3>
+                {% for exp in resume.experience|split_lines %}
+                    <div class="experience-item">
+                        <p>{{ exp }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="section">
+                <h3>Education</h3>
+                <p>{{ resume.education }}</p>
+            </div>
+
+    <h2>Choose Template</h2>
+    <a href="{% url 'resume_preview' resume.id %}?template=template1"><button>Template 1</button></a>
+    <a href="{% url 'resume_preview' resume.id %}?template=template2"><button>Template 2</button></a>
+    <a href="{% url 'resume_preview' resume.id %}?template=template3"><button>Template 3</button></a>
+
+    <h2>Download PDF</h2>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+    <a href="{% url 'download_resume_pdf' resume.id %}?template=template1"><button>Download Template 1 PDF</button></a>
+    <a href="{% url 'download_resume_pdf' resume.id %}?template=template2"><button>Download Template 2 PDF</button></a>
+    <a href="{% url 'download_resume_pdf' resume.id %}?template=template3"><button>Download Template 3 PDF</button></a>
+ </div>
+    </div>
+
+</body>
+</html>

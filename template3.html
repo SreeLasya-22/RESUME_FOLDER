@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Preview - Template 3</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background: #ffffff;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            color: #5bc0de;
+            margin: 0;
+        }
+        .contact-info {
+            text-align: right;
+            font-size: 14px;
+            color: #555;
+        }
+        hr {
+            border: 0;
+            border-top: 2px solid #5bc0de;
+            margin: 10px 0 20px 0;
+        }
+        h2 {
+            color: #5bc0de;
+            margin-bottom: 8px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .side-by-side {
+            display: flex;
+            gap: 20px;
+        }
+        .side-by-side > div {
+            flex: 1;
+        }
+        .skills span {
+            display: inline-block;
+            background: #f0f8ff;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .download-buttons button {
+            background: #5bc0de;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            margin-right: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .download-buttons button:hover {
+            background: #31b0d5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ resume.name }}</h1>
+            <div class="contact-info">
+                <p>Email: {{ resume.email }}</p>
+                <p>Phone: {{ resume.phone }}</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Profile</h2>
+            <p>{{ resume.summary }}</p>
+        </div>
+
+        <div class="side-by-side">
+            <div class="section">
+                <h2>Skills</h2>
+                <div class="skills">
+                    {% for skill in skills_list %}
+                        <span>{{ skill }}</span>
+                    {% endfor %}
+                </div>
+
+                <h2>Languages</h2>
+                <p>{{ resume.languages }}</p>
+
+                <h2>Hobbies</h2>
+                <p>{{ resume.hobbies }}</p>
+            </div>
+
+            <div class="section">
+                <h2>Experience</h2>
+                <ul>
+                    {% for exp in experience_list %}
+                        <li>{{ exp }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h2>Education</h2>
+                <p>{{ resume.education }}</p>
+
+                <h2>Acknowledgement</h2>
+                <p>{{ resume.acknowledgment }}</p>
+            </div>
+        </div>
+
+        <div class="section download-buttons">
+            <h2>Choose Template</h2>
+            <a href="{% url 'resume_preview' resume.id %}?template=template1"><button>Template 1</button></a>
+            <a href="{% url 'resume_preview' resume.id %}?template=template2"><button>Template 2</button></a>
+            <a href="{% url 'resume_preview' resume.id %}?template=template3"><button>Template 3</button></a>
+
+            <h2>Download PDF</h2>
+            <a href="{% url 'download_resume_pdf' resume.id %}?template=template1"><button>Download Template 1 PDF</button></a>
+            <a href="{% url 'download_resume_pdf' resume.id %}?template=template2"><button>Download Template 2 PDF</button></a>
+            <a href="{% url 'download_resume_pdf' resume.id %}?template=template3"><button>Download Template 3 PDF</button></a>
+        </div>
+    </div>
+</body>
+</html>
